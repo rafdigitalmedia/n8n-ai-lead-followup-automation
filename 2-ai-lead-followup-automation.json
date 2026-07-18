@@ -1,0 +1,285 @@
+{
+  "name": "AI Lead Follow-up Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash-lite",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash-lite"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Write a professional follow-up email to {{ $json[\"Full Name\"] }} from {{ $json[\"Company Name\"] }}.\n\nTheir details:\n- Email: {{ $json[\"Email Address\"] }}\n- Phone: {{ $json[\"Phone Number\"] }}\n- Previous inquiry: {{ $json[\"Message/Requirements\"] }}\n\nGoal:\n- Thank them for their inquiry\n- Show we understand their needs\n- Offer a free 15-minute consultation call\n- Create gentle urgency without being pushy\n\nTone: Friendly, professional, and helpful\nLength: 100-150 words\nSign off as: Raf Digital Media Team\n\nProvide ONLY the email content - no explanations or extra text."
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        816,
+        -176
+      ],
+      "id": "bfa521c1-ca3e-4715-a4a2-dc363d56b5bd",
+      "name": "🤖 AI: Generate Follow-up Email",
+      "credentials": {
+        "googlePalmApi": {
+          "id": null,
+          "name": "",
+          "__aiGatewayManaged": true
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Trigger: Lead Follow-up Needed').item.json[\"Email Address\"] }}",
+        "subject": "=Following Up: Your Website Redesign Inquiry - {{ $('Trigger: Lead Follow-up Needed').item.json[\"Company Name\"] }}",
+        "message": "=={{ $json.content.parts[0].text }}",
+        "options": {
+          "senderName": "Raf Digital Media"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        448,
+        64
+      ],
+      "id": "4ba30052-66aa-47c6-a9a8-baab4d2c78fb",
+      "name": "📧 Gmail: Send Follow-up Email",
+      "webhookId": "881dafed-3b0a-4519-84b7-f34d6a18e59a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Lm2pg09FJ5xmK0dU",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1AaQftyB7XE2NuXXamxE59Hoanl-Y6Qzz9Ak-F-JC19s",
+          "mode": "list",
+          "cachedResultName": "Lead Capture Form--02",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AaQftyB7XE2NuXXamxE59Hoanl-Y6Qzz9Ak-F-JC19s/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AaQftyB7XE2NuXXamxE59Hoanl-Y6Qzz9Ak-F-JC19s/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Full Name": "={{ $('Trigger: Lead Follow-up Needed').item.json[\"Full Name\"] }}",
+            "Status": "  Sent"
+          },
+          "matchingColumns": [
+            "Full Name"
+          ],
+          "schema": [
+            {
+              "id": "Full Name",
+              "displayName": "Full Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email Address",
+              "displayName": "Email Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone Number",
+              "displayName": "Phone Number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company Name",
+              "displayName": "Company Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Message/Requirements",
+              "displayName": "Message/Requirements",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        880,
+        64
+      ],
+      "id": "d211d3e6-1382-46ae-8d83-431788eb1b9b",
+      "name": "📝 Update: Mark as Sent",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "VRt3EurOs9u5ujlu",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1AaQftyB7XE2NuXXamxE59Hoanl-Y6Qzz9Ak-F-JC19s",
+          "mode": "list",
+          "cachedResultName": "Lead Capture Form--02",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AaQftyB7XE2NuXXamxE59Hoanl-Y6Qzz9Ak-F-JC19s/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AaQftyB7XE2NuXXamxE59Hoanl-Y6Qzz9Ak-F-JC19s/edit#gid=0"
+        },
+        "event": "rowUpdate",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -176
+      ],
+      "id": "dd614f45-8be0-4f7f-aef0-7b959a6bae1f",
+      "name": "Trigger: Lead Follow-up Needed",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "DwmoTY69cugTub6Z",
+          "name": "📊 Trigger: New Lead"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": " AI Lead Follow-up Automation\nPowered by n8n + Google Gemini AI",
+        "height": 80,
+        "width": 304,
+        "color": "#1E3A8A"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        448,
+        -240
+      ],
+      "typeVersion": 1,
+      "id": "115b22b4-3bbf-465e-a7ea-60a51b2c4fe0",
+      "name": "Sticky Note4"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "🤖 AI: Generate Follow-up Email": {
+      "main": [
+        [
+          {
+            "node": "📧 Gmail: Send Follow-up Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "📧 Gmail: Send Follow-up Email": {
+      "main": [
+        [
+          {
+            "node": "📝 Update: Mark as Sent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger: Lead Follow-up Needed": {
+      "main": [
+        [
+          {
+            "node": "🤖 AI: Generate Follow-up Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "6e065817-892c-4045-a219-3ec2c704d9b4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "51b813e5251a4934016b27af445ca3e90ef59420bdd28652af11ea5ed66132bb"
+  },
+  "nodeGroups": [],
+  "id": "VJ7NCAwF3o6sIMr8",
+  "tags": []
+}
