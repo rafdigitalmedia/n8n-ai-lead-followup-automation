@@ -34,7 +34,7 @@ Watch how the automation works end-to-end:
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
-- [Detailed Screenshots](#detailed-screenshots)
+- [Detailed screenshots](#detailed-screenshots)
 - [File Structure](#file-structure)
 - [Future Enhancements](#future-enhancements)
 - [License](#license)
