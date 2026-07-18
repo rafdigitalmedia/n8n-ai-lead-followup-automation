@@ -120,7 +120,8 @@ Perfect for sales teams, agencies, and businesses that need to nurture leads eff
 
 ---
 
-## 📊 Workflow Diagram
+##  Workflow Diagram
+
 ┌─────────────────────┐
 │ Google Sheets │
 │ (Trigger) │
@@ -133,20 +134,21 @@ Perfect for sales teams, agencies, and businesses that need to nurture leads eff
 └──────────┬──────────┘
 │
 ↓
-─────────────────────┐
+┌─────────────────────┐
 │ Gmail │
 │ (Send Email) │
-└──────────┬──────────
+──────────┬──────────┘
 │
 ↓
 ┌─────────────────────┐
 │ Google Sheets │
 │ (Update Status) │
-─────────────────────┘
+└─────────────────────┘
+
 
 ---
 
-## 📋 Prerequisites
+##  Prerequisites
 
 Before you begin, ensure you have:
 
