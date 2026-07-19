@@ -8,7 +8,7 @@
 
 ---
 
-##  See It In Action
+## 🎬 See It In Action
 
 Watch how the automation works end-to-end:
 
@@ -22,7 +22,7 @@ Watch how the automation works end-to-end:
 
 ---
 
-##  Table of Contents
+## 📋 Table of Contents
 
 - [Business Impact](#business-impact)
 - [Overview](#overview)
@@ -67,7 +67,7 @@ Perfect for sales teams, agencies, and businesses that need to nurture leads eff
 
 ---
 
-## ✨ Features
+##  Features
 
 - ✅ **Automated Triggering** - Monitors Google Sheets every minute
 - ✅ **AI-Powered Personalization** - Uses Google Gemini 2.5 Flash Lite
@@ -129,13 +129,13 @@ Perfect for sales teams, agencies, and businesses that need to nurture leads eff
 └──────────┬──────────┘
            │
            ↓
-─────────────────────┐
+┌─────────────────────┐
 │  Google Gemini AI   │
 │  (Email Generation) │
 └──────────┬──────────┘
            │
            ↓
-┌─────────────────────
+┌─────────────────────┐
 │  Gmail              │
 │  (Send Email)       │
 └──────────┬──────────┘
@@ -144,4 +144,162 @@ Perfect for sales teams, agencies, and businesses that need to nurture leads eff
 ┌─────────────────────┐
 │  Google Sheets      │
 │  (Update Status)    │
-─────────────────────┘
+└─────────────────────┘
+📋 Prerequisites
+Before you begin, ensure you have:
+✅ n8n account (Self-hosted or Cloud)
+✅ Google account with:
+Google Sheets access
+Gmail API enabled
+✅ Google Gemini API key (Free from Google AI Studio)
+✅ Google Sheets with columns:
+Full Name
+Email Address
+Phone Number
+Company Name
+Message/Requirements
+Status
+Last Contact Date
+Follow-up Status
+🚀 Installation
+Step 1: Clone or Download
+# Clone this repository
+git clone https://github.com/rafdigitalmedia/n8n-ai-lead-followup-automation.git
+cd n8n-ai-lead-followup-automation
+
+Step 2: Import to n8n
+Open your n8n dashboard
+Go to Workflows → Import from file
+Select 2-ai-lead-followup-automation.json
+The workflow will load automatically
+Step 3: Set Up Credentials
+You need to configure 3 credentials:
+1. Google Sheets Credential
+Click on Trigger: Lead Follow-up Needed node
+Select Create New Credential
+Follow Google OAuth flow
+Grant Sheets access
+2. Google Gemini Credential
+Click on AI: Generate Follow-up Email node
+Select Create New Credential
+Enter your Google Gemini API Key
+Get it from Google AI Studio
+3. Gmail Credential
+Click on Gmail: Send Follow-up Email node
+Select Create New Credential
+Follow Google OAuth flow
+Grant Gmail sending permissions
+⚙️ Configuration
+Google Sheets Setup
+Create a sheet with these columns:
+Column Name
+Type
+Required
+Full Name
+Text
+✅
+Email Address
+Email
+✅
+Phone Number
+Text
+✅
+Company Name
+Text
+✅
+Message/Requirements
+Text
+✅
+Status
+Text
+✅
+Last Contact Date
+Date
+✅
+Follow-up Status
+Text
+✅
+Trigger Configuration
+The workflow triggers when:
+Status column = "Needs Follow-up"
+Checks every 1 minute
+AI Prompt Customization
+Edit the AI node to customize:
+Email tone (Friendly, Professional, Urgent, etc.)
+Email length (100-150 words default)
+Call-to-action (15-min consultation default)
+Sign-off (Raf Digital Media Team)
+📖 Usage
+To Activate the Workflow:
+Open the workflow in n8n
+Click the "Active" toggle (top right)
+Turn it ON
+The workflow will now monitor automatically
+To Manually Test:
+Add a new lead to Google Sheets
+Set Status = "Needs Follow-up"
+Click "Execute workflow" in n8n
+Check:
+✅ Email sent to lead
+✅ Sheets updated with "Sent" status
+✅ Last Contact Date added
+Example Lead Entry:
+Full Name: John Anderson
+Email Address: john@techstartup.com
+Phone Number: +1 555-0123
+Company Name: TechStartup Inc
+Message/Requirements: We need a complete website redesign with e-commerce functionality. Budget: $15,000. Timeline: 2 months.
+Status: Needs Follow-up
+
+Result:
+Personalized email sent automatically
+✅ Status updated to "Sent"
+📅 Date logged
+📸 Screenshots
+Full Workflow
+AI Email Generation
+Email Sent Successfully
+Google Sheets Updated
+Email in Inbox
+📁 File Structure
+n8n-ai-lead-followup-automation/
+│
+├── 2-ai-lead-followup-automation.json    # n8n workflow file
+├── workflow-demo-followup.gif             # Workflow demo GIF
+├── README.md                              # This file
+│
+└── screenshots/
+    ├── 1-workflow-overview.png           # Full workflow view
+    ├── 2-ai-email-generation.png         # AI output with prompt
+    ├── 3-email-sent-success.png          # Gmail success confirmation
+    ├── 4-sheets-updated.png              # Sheets update proof
+    └── 5-email-inbox.png                 # Received email example
+
+🚀 Future Enhancements
+Multi-step follow-up sequences (3-email nurture campaign)
+A/B testing for email subject lines
+Lead scoring based on engagement
+CRM integration (HubSpot, Salesforce)
+Email open tracking
+Click-through analytics
+SMS follow-up option
+Multi-language support
+Custom email templates
+Time-based sending (business hours only)
+📄 License
+This project is open source and available under the MIT License.
+👨‍💻 Author
+Md Rafiqul Islam
+Digital Media & Automation Specialist
+LinkedIn
+📧 rafdigitalmedia@gmail.com
+🤝 Support
+If you find this project helpful:
+⭐ Star this repository
+🔗 Share with your network
+💡 Suggest improvements
+Built with ❤️ using n8n and Google Gemini AI
+<div align="center">
+
+Happy Automating! 🚀
+</div>
