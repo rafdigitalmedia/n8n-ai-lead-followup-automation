@@ -8,7 +8,7 @@
 
 ---
 
-## 🎬 See It In Action
+##  See It In Action
 
 Watch how the automation works end-to-end:
 
@@ -22,7 +22,7 @@ Watch how the automation works end-to-end:
 
 ---
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [Business Impact](#business-impact)
 - [Overview](#overview)
@@ -34,7 +34,7 @@ Watch how the automation works end-to-end:
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
-- [Detailed screenshots](#detailed-screenshots)
+- [Screenshots](#screenshots)
 - [File Structure](#file-structure)
 - [Future Enhancements](#future-enhancements)
 - [License](#license)
@@ -120,60 +120,28 @@ Perfect for sales teams, agencies, and businesses that need to nurture leads eff
 
 ---
 
-##  Workflow Diagram
+## 📊 Workflow Diagram
 
+```text
 ┌─────────────────────┐
-│ Google Sheets │
-│ (Trigger) │
+│  Google Sheets      │
+│  (Trigger)          │
 └──────────┬──────────┘
-│
-↓
-┌─────────────────────┐
-│ Google Gemini AI │
-│ (Email Generation) │
+           │
+           ↓
+─────────────────────┐
+│  Google Gemini AI   │
+│  (Email Generation) │
 └──────────┬──────────┘
-│
-↓
+           │
+           ↓
+┌─────────────────────
+│  Gmail              │
+│  (Send Email)       │
+└──────────┬──────────┘
+           │
+           ↓
 ┌─────────────────────┐
-│ Gmail │
-│ (Send Email) │
-──────────┬──────────┘
-│
-↓
-┌─────────────────────┐
-│ Google Sheets │
-│ (Update Status) │
-└─────────────────────┘
-
-
----
-
-##  Prerequisites
-
-Before you begin, ensure you have:
-
-- ✅ **n8n account** (Self-hosted or Cloud)
-- ✅ **Google account** with:
-  - Google Sheets access
-  - Gmail API enabled
-- ✅ **Google Gemini API key** (Free from [Google AI Studio](https://aistudio.google.com))
-- ✅ **Google Sheets** with columns:
-  - Full Name
-  - Email Address
-  - Phone Number
-  - Company Name
-  - Message/Requirements
-  - Status
-  - Last Contact Date
-  - Follow-up Status
-
----
-
-## 🚀 Installation
-
-### **Step 1: Clone or Download**
-
-```bash
-# Clone this repository
-git clone https://github.com/rafdigitalmedia/n8n-ai-lead-followup-automation.git
-cd n8n-ai-lead-followup-automation
+│  Google Sheets      │
+│  (Update Status)    │
+─────────────────────┘
